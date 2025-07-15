@@ -54,8 +54,26 @@ for element in soup.find_all(string=entrances_pattern):
 number_of_entrances = ' '.join(filter(None, max(found_entrances))) if found_entrances else None
 # print("Количество подъездов:", number_of_entrances or "не определено")
 
+
+address = None
+
+address_div = soup.find('div', class_='_13eh3hvq')
+if address_div:
+    address_link = address_div.find('a', class_='_2lcm958')
+    if address_link:
+        address = address_link.get_text(strip=True)
+        # print(address)
+
+else:
+
+    address_h1 = soup.find('h1', class_='_1x89xo5')
+
+    if address_h1:
+        address = address_h1.span.get_text(strip=True)  
+        # print(address)
+
 data = [
-    ["Тип здания", "Количество этажей", "Количество входов"],
-    [building_type, number_of_floors, number_of_entrances]
+    ["Адрес", "Тип здания", "Количество этажей", "Количество входов"],
+    [address, building_type, number_of_floors, number_of_entrances]
 ]
 # print(data)
