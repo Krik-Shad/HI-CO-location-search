@@ -2,8 +2,8 @@ import requests
 import re
 from bs4 import BeautifulSoup
 from building_types import building_type_keywords
+from parsing_url import url
 
-url = "https://2gis.ru/moscow/firm/70000001031354947/38.073195%2C55.546556?m=38.06754%2C55.547161%2F15.67"
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
 }
