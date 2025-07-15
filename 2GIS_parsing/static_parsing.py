@@ -21,7 +21,7 @@ for keyword in building_type_keywords:
         building_type = keyword
         break
 
-print("Тип здания:", building_type or "не определен")
+# print("Тип здания:", building_type or "не определен")
 
 floor_pattern = re.compile(r'\bэтаж[а-яё]*\b', re.IGNORECASE)
     
@@ -32,10 +32,12 @@ found_elements = [
 
 if found_elements:
     for text in found_elements:
-        print(f"Количество этажей: {text.strip()}")
-else:
-    print("Упоминания этажности не найдены")
+        number_of_floors = text.strip()
+        # print(f"Количество этажей: {number_of_floors}")
 
+else:
+    number_of_floors = None
+    # print("Упоминания этажности не найдены")
 
 entrances_pattern = re.compile(
     r'(подъезд[а-яё]*|вход[а-яё]*)\s*:\s*(\d+)|'  
@@ -50,5 +52,10 @@ for element in soup.find_all(string=entrances_pattern):
         found_entrances.append(match)
 
 number_of_entrances = ' '.join(filter(None, max(found_entrances))) if found_entrances else None
+# print("Количество подъездов:", number_of_entrances or "не определено")
 
-print("Количество подъездов:", number_of_entrances or "не определено")
+data = [
+    ["Тип здания", "Количество этажей", "Количество входов"],
+    [building_type, number_of_floors, number_of_entrances]
+]
+# print(data)
