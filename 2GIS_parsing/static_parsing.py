@@ -3,6 +3,7 @@ import re
 from bs4 import BeautifulSoup
 from building_types import building_type_keywords
 from url_parsing import url
+import csv
 
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
@@ -76,4 +77,10 @@ data = [
     ["Адрес", "Тип здания", "Количество этажей", "Количество входов"],
     [address, building_type, number_of_floors, number_of_entrances]
 ]
+
+with open('2GIS_parsing\\static_data.csv', 'w', newline='', encoding='utf-8') as f:
+    writer = csv.writer(f)
+    writer.writerows(data)
+
+
 # print(data)
