@@ -99,7 +99,7 @@ def parse_reviews(base_url, max_reviews=50):
         return []
 
 reviews = parse_reviews(url, max_reviews=30)
-print(reviews)
+# print(reviews)
 
 if reviews:
     df = pd.DataFrame(reviews)
