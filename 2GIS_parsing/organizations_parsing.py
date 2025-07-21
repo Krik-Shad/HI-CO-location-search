@@ -102,6 +102,6 @@ orgs_data = parse_building_organizations(url, max_orgs=1000)
 if orgs_data:
     df = pd.DataFrame(orgs_data)
     
-    df.to_csv("2GIS_parsing\\organizations_data.csv", index=False, encoding='utf-8-sig')
+    df.to_csv("2GIS_parsing\\csv\\organizations_data.csv", index=False, encoding='utf-8-sig')
 else:
     print("Не удалось собрать данные об организациях")
