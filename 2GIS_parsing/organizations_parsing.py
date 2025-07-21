@@ -9,7 +9,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
 import pandas as pd
 import re
-from url_parsing import url as building_url
+from url_parsing import url
 
 # Настройки браузера
 chrome_options = Options()
@@ -20,9 +20,9 @@ chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64
 service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service, options=chrome_options)
 
-def parse_building_organizations(building_url, max_orgs=100):
+def parse_building_organizations(url, max_orgs=100):
     try:
-        driver.get(building_url)
+        driver.get(url)
         time.sleep(3)
         
 
@@ -39,7 +39,7 @@ def parse_building_organizations(building_url, max_orgs=100):
 
         # Находим боковую панель с организациями
         sidebar = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, 'div._1rkbbi0x'))  # Уточните селектор для вашего случая
+            EC.presence_of_element_located((By.CSS_SELECTOR, 'div._1rkbbi0x'))
         )
         
         # Прокручиваем боковую панель до кнопки "Добавить организацию"
@@ -96,7 +96,7 @@ def parse_building_organizations(building_url, max_orgs=100):
     finally:
         driver.quit()
 
-orgs_data = parse_building_organizations(building_url, max_orgs=1000)
+orgs_data = parse_building_organizations(url, max_orgs=1000)
 
 # Сохранение в CSV
 if orgs_data:
