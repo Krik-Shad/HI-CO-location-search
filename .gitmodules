@@ -1,0 +1,3 @@
+[submodule "OSM_parsing"]
+	path = OSM_parsing
+	url = https://github.com/nikita-tihonov/LocationSearch.git
